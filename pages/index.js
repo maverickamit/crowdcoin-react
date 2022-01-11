@@ -1,6 +1,6 @@
 import factory from "../components/factory";
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const campaigns = await factory.methods.getDeployedCampaigns().call();
   return {
     props: { campaigns }, // will be passed to the page component as props
