@@ -1,6 +1,7 @@
 import factory from "../components/factory";
 import { Card } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
+import Layout from "../components/layout";
 import "semantic-ui-css/semantic.min.css";
 
 export async function getStaticProps() {
@@ -19,11 +20,13 @@ const Home = ({ campaigns }) => {
     };
   });
   return (
-    <div>
-      <h3>Open Campaigns</h3>
-      <Card.Group items={items}></Card.Group>
-      <Button content="Create Campaign" icon="add circle" primary />
-    </div>
+    <Layout>
+      <div>
+        <h3>Open Campaigns</h3>
+        <Card.Group items={items}></Card.Group>
+        <Button content="Create Campaign" icon="add circle" primary />
+      </div>
+    </Layout>
   );
 };
 
