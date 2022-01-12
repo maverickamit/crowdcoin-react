@@ -42,7 +42,7 @@ const CampaignNew = () => {
 
   return (
     <Layout>
-      <h1>New Campaign.</h1>
+      <h1>Create a Campaign</h1>
       <Form onSubmit={handleSubmit} error={!!errorMessage}>
         <Form.Field>
           <label>Minimum Contribution in Wei</label>
@@ -54,11 +54,11 @@ const CampaignNew = () => {
           />
         </Form.Field>
         <Button type="submit" primary>
-          Submit
+          Create!
         </Button>
         <Message
           error
-          header="There was some errors with your submission."
+          header="There is an error with your submission."
           content={errorMessage}
         />
       </Form>
