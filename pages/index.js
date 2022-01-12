@@ -23,8 +23,13 @@ const Home = ({ campaigns }) => {
     <Layout>
       <div>
         <h3>Open Campaigns</h3>
+        <Button
+          floated="right"
+          content="Create Campaign"
+          icon="add circle"
+          primary
+        />
         <Card.Group items={items}></Card.Group>
-        <Button content="Create Campaign" icon="add circle" primary />
       </div>
     </Layout>
   );
