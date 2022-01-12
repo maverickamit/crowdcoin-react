@@ -2,7 +2,6 @@ import factory from "../components/factory";
 import { Card } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import Layout from "../components/layout";
-import "semantic-ui-css/semantic.min.css";
 
 export async function getStaticProps() {
   const campaigns = await factory.methods.getDeployedCampaigns().call();
