@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Form } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import { Input } from "semantic-ui-react";
+import factory from "../../components/factory";
 
 const CampaignNew = () => {
   const [minimumContribution, setMinimumContribution] = useState("");
@@ -11,9 +12,15 @@ const CampaignNew = () => {
     setMinimumContribution(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(minimumContribution);
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    await factory.methods.createCampaign(minimumContribution).send({
+      from: accounts[0],
+    });
+    setMinimumContribution("");
   };
 
   return (
