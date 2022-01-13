@@ -1,15 +1,19 @@
 import { Menu } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
-
+import Link from "next/link";
 export default () => {
   return (
     <Menu style={{ marginTop: "10px" }}>
-      <Menu.Item name="CrowdCoin" />
+      <Link href="/">
+        <Menu.Item name="CrowdCoin" />
+      </Link>
       <Menu.Menu position="right">
         <Menu.Item name="Campaigns"></Menu.Item>
-        <Menu.Item>
-          <Icon name="add" />
-        </Menu.Item>
+        <Link href="/campaigns/new">
+          <Menu.Item>
+            <Icon name="add" />
+          </Menu.Item>
+        </Link>
       </Menu.Menu>
     </Menu>
   );
