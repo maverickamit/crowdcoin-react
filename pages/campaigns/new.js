@@ -9,6 +9,7 @@ import { Message } from "semantic-ui-react";
 const CampaignNew = () => {
   const [minimumContribution, setMinimumContribution] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInput = (event) => {
     setMinimumContribution(event.target.value);
@@ -22,6 +23,7 @@ const CampaignNew = () => {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+        setIsLoading(true);
         await factory.methods.createCampaign(minimumContribution).send({
           from: accounts[0],
         });
@@ -35,6 +37,7 @@ const CampaignNew = () => {
           setErrorMessage(err.message);
         }
       }
+      setIsLoading(false);
     } else {
       setErrorMessage("Please enter a minimum value.");
     }
@@ -53,7 +56,7 @@ const CampaignNew = () => {
             onChange={handleInput}
           />
         </Form.Field>
-        <Button type="submit" primary>
+        <Button loading={isLoading} type="submit" primary>
           Create!
         </Button>
         <Message
