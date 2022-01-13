@@ -5,11 +5,13 @@ import { Button } from "semantic-ui-react";
 import { Input } from "semantic-ui-react";
 import factory from "../../components/factory";
 import { Message } from "semantic-ui-react";
+import { useRouter } from "next/router";
 
 const CampaignNew = () => {
   const [minimumContribution, setMinimumContribution] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleInput = (event) => {
     setMinimumContribution(event.target.value);
@@ -27,7 +29,7 @@ const CampaignNew = () => {
         await factory.methods.createCampaign(minimumContribution).send({
           from: accounts[0],
         });
-        setMinimumContribution("");
+        router.push("/");
       } catch (err) {
         if (err.message.includes("invalid BigNumber string")) {
           setErrorMessage(
