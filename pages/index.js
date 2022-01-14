@@ -2,7 +2,7 @@ import factory from "../components/factory";
 import { Card } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
 import Layout from "../components/layout";
-
+import Link from "next/link";
 export async function getStaticProps() {
   const campaigns = await factory.methods.getDeployedCampaigns().call();
   return {
@@ -14,7 +14,11 @@ const Home = ({ campaigns }) => {
   const items = campaigns.map((address) => {
     return {
       header: address,
-      description: <a>View Campaign</a>,
+      description: (
+        <Link href={`/campaigns/${address}`}>
+          <a>View Campaign</a>
+        </Link>
+      ),
       fluid: true,
     };
   });
