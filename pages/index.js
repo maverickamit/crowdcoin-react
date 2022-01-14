@@ -26,12 +26,14 @@ const Home = ({ campaigns }) => {
     <Layout>
       <div>
         <h3>Open Campaigns</h3>
-        <Button
-          floated="right"
-          content="Create Campaign"
-          icon="add circle"
-          primary
-        />
+        <Link href="/campaigns/new">
+          <Button
+            floated="right"
+            content="Create Campaign"
+            icon="add circle"
+            primary
+          />
+        </Link>
         <Card.Group items={items}></Card.Group>
       </div>
     </Layout>
