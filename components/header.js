@@ -8,7 +8,9 @@ export default () => {
         <Menu.Item name="CrowdCoin" />
       </Link>
       <Menu.Menu position="right">
-        <Menu.Item name="Campaigns"></Menu.Item>
+        <Link href="/">
+          <Menu.Item name="Campaigns"></Menu.Item>
+        </Link>
         <Link href="/campaigns/new">
           <Menu.Item>
             <Icon name="add" />
