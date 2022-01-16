@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import Campaign from "../../components/campaign";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import ContributeForm from "../../components/contributeForm";
 
 export async function getStaticProps({ params }) {
@@ -70,8 +70,16 @@ const CampaignDetails = ({
   return (
     <Layout>
       <h3>Campaign Details: {address}</h3>
-      <Card.Group items={items}></Card.Group>
-      <ContributeForm address={address} />
+      <Grid columns={2}>
+        <Grid.Row>
+          <Grid.Column width={10}>
+            <Card.Group items={items}></Card.Group>
+          </Grid.Column>
+          <Grid.Column width={6}>
+            <ContributeForm address={address} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Layout>
   );
 };
