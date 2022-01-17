@@ -4,7 +4,7 @@ import Campaign from "./campaign";
 import web3 from "./web3";
 import { useRouter } from "next/router";
 
-export default ({ address }) => {
+const ContributeForm = ({ address }) => {
   const [contributionAmount, setContributionAmount] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -73,3 +73,5 @@ export default ({ address }) => {
     </Form>
   );
 };
+
+export default ContributeForm;

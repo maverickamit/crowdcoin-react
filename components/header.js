@@ -1,7 +1,8 @@
 import { Menu } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
 import Link from "next/link";
-export default () => {
+
+const Header = () => {
   return (
     <Menu style={{ marginTop: "10px" }}>
       <Link href="/">
@@ -20,3 +21,5 @@ export default () => {
     </Menu>
   );
 };
+
+export default Header;

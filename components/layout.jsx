@@ -1,5 +1,6 @@
 import { Container } from "semantic-ui-react";
 import Header from "../components/header";
+
 const Layout = (props) => {
   return (
     <Container>
