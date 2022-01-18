@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import Campaign from "../../components/campaign";
-import { Card, Grid } from "semantic-ui-react";
+import { Button, Card, Grid } from "semantic-ui-react";
 import ContributeForm from "../../components/contributeForm";
+import Link from "next/link";
 
 export async function getServerSideProps({ params }) {
   const campaign = Campaign(params.address);
@@ -70,6 +71,13 @@ const CampaignDetails = ({
           </Grid.Column>
           <Grid.Column width={6}>
             <ContributeForm address={address} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Link href={`/campaigns/${address}/requests`}>
+              <Button primary>View Requests</Button>
+            </Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
