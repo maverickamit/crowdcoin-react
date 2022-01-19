@@ -17,7 +17,7 @@ export async function getServerSideProps({ params }) {
 const RequestNew = ({ address }) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [receipient, setReceipient] = useState("");
+  const [recipient, setRecipient] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +26,12 @@ const RequestNew = ({ address }) => {
     const campaign = Campaign(address);
     setErrorMessage("");
     setSuccessMessage("");
-    if (description && amount && receipient) {
+    if (description && amount && recipient) {
       setIsLoading(true);
       try {
         const accounts = await web3.eth.getAccounts();
         await campaign.methods
-          .createRequest(description, web3.utils.toWei(amount), receipient)
+          .createRequest(description, web3.utils.toWei(amount), recipient)
           .send({
             from: accounts[0],
             gasLimit: 3000000,
@@ -84,11 +84,11 @@ const RequestNew = ({ address }) => {
                 />
               </Form.Field>
               <Form.Field>
-                <label>Receipient</label>
+                <label>Recipient</label>
                 <Input
-                  value={receipient}
+                  value={recipient}
                   onChange={(event) => {
-                    setReceipient(event.target.value);
+                    setRecipient(event.target.value);
                   }}
                 />
               </Form.Field>
