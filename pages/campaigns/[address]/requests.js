@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Table, Button } from "semantic-ui-react";
 import Campaign from "../../../components/campaign";
 import web3 from "../../../components/web3";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ params }) {
   const address = params.address;
@@ -24,7 +25,47 @@ export async function getServerSideProps({ params }) {
 }
 
 const RequestsDetails = ({ address, requests, contributorsCount }) => {
+  const router = useRouter();
   const { Header, Row, HeaderCell, Body, Cell } = Table;
+  const campaign = Campaign(address);
+
+  const approve = (index) => {
+    return (
+      <Button
+        onClick={async () => {
+          const accounts = await web3.eth.getAccounts();
+          await campaign.methods.approveRequest(index).send({
+            from: accounts[0],
+            gasLimit: 3000000,
+          });
+          router.replace(`/campaigns/${address}/requests`);
+        }}
+        color="green"
+        basic
+      >
+        Approve
+      </Button>
+    );
+  };
+
+  const finalize = (index) => {
+    return (
+      <Button
+        onClick={async () => {
+          const accounts = await web3.eth.getAccounts();
+          await campaign.methods.finalizeRequest(index).send({
+            from: accounts[0],
+            gasLimit: 3000000,
+          });
+          router.replace(`/campaigns/${address}/requests`);
+        }}
+        color="blue"
+        basic
+      >
+        Finalize
+      </Button>
+    );
+  };
 
   return (
     <Layout>
@@ -40,6 +81,8 @@ const RequestsDetails = ({ address, requests, contributorsCount }) => {
             <HeaderCell>Recipient</HeaderCell>
             <HeaderCell>Complete</HeaderCell>
             <HeaderCell>Approval Count</HeaderCell>
+            <HeaderCell>Approve</HeaderCell>
+            <HeaderCell>Finalize</HeaderCell>
           </Row>
         </Header>
         <Body>
@@ -57,6 +100,8 @@ const RequestsDetails = ({ address, requests, contributorsCount }) => {
                   <Cell>
                     {approvalCount}/{contributorsCount}
                   </Cell>
+                  <Cell>{approve(index)}</Cell>
+                  <Cell>{finalize(index)}</Cell>
                 </Row>
               );
             }
